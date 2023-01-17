@@ -17,7 +17,6 @@
 export default {
   name: 'TimeLineEntry',
   props: {
-    msg: String,
     item: Object
   }
 }

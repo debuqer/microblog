@@ -38,7 +38,6 @@ export default {
     }
   },
   props: {
-    msg: String
   },
   components: { TimeLineEntry }
 }
