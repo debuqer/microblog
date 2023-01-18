@@ -1,9 +1,9 @@
 <template>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container bootstrap snippets bootdeys">
-    <ProfileHeader></ProfileHeader>
+    <ProfileHeader :item="page_info"></ProfileHeader>
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-12 col-md-offset-2">
         <PostSomething></PostSomething>
         <div class="panel panel-body">
           <TimeLine :items="items"></TimeLine>
@@ -18,7 +18,7 @@ import PostSomething from '@/components/PostSomething.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import ProfileHeader from '@/components/ProfileHeader.vue'
 export default {
-  name: 'CalenderView',
+  name: 'CalendarView',
   components: {
     TimeLine,
     PostSomething,
@@ -26,6 +26,11 @@ export default {
   },
   data: () => {
     return {
+      page_info: {
+        title: 'World War II',
+        short_description: 'The history of WW2',
+        header_image: 'https://bootdey.com/img/Content/avatar/avatar6.png'
+      },
       items: [
         {
           id: 1,

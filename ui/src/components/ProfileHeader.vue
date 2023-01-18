@@ -8,13 +8,13 @@
       <div class="profile-header-content">
           <!-- BEGIN profile-header-img -->
           <div class="profile-header-img">
-            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+            <img :src="item.header_image" :alt="item.title">
           </div>
           <!-- END profile-header-img -->
           <!-- BEGIN profile-header-info -->
           <div class="profile-header-info">
-            <h4 class="m-t-10 m-b-5">Sean Ngu</h4>
-            <p class="m-b-10">UXUI + Frontend Developer</p>
+            <h4 class="m-t-10 m-b-5">{{ item.title }}</h4>
+            <p class="m-b-10">{{ item.short_description }}</p>
             <a href="#" class="btn btn-sm btn-info mb-2">Edit Profile</a>
           </div>
           <!-- END profile-header-info -->
@@ -22,11 +22,7 @@
       <!-- END profile-header-content -->
       <!-- BEGIN profile-header-tab -->
       <ul class="profile-header-tab nav nav-tabs">
-          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-with-timeline-posts" target="__blank" class="nav-link_">POSTS</a></li>
-          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-about" target="__blank" class="nav-link_">ABOUT</a></li>
-          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
-          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos" target="__blank" class="nav-link_">VIDEOS</a></li>
-          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-friend-list" target="__blank" class="nav-link_ active show">FRIENDS</a></li>
+          <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-friend-list" target="__blank" class="nav-link_ active show">TIMELINE</a></li>
       </ul>
       <!-- END profile-header-tab -->
     </div>
@@ -37,6 +33,7 @@
 export default {
   name: 'ProfileHeader',
   props: {
+    item: Object
   }
 }
 </script>

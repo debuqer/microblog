@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MainFeed from '../views/MainFeed.vue'
 import LoginView from '../views/LoginView.vue'
-import CalenderView from '../views/CalenderView.vue'
+import CalendarView from '../views/CalendarView.vue'
 
 const routes = [
   {
@@ -29,9 +29,9 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/calender',
+    path: '/calendar',
     name: 'logicalendern',
-    component: CalenderView
+    component: CalendarView
   }
 ]
 
