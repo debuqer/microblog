@@ -15,29 +15,8 @@ import TimeLineEntry from './TimeLineEntry.vue'
 
 export default {
   name: 'TimeLine',
-  data: () => {
-    return {
-      items: [
-        {
-          id: 1,
-          profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-          label: '22:53',
-          author: 'Bagher',
-          time: '1 Hour ago',
-          message: 'This is cold'
-        },
-        {
-          id: 2,
-          profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-          label: '22:53',
-          author: 'Bagher',
-          time: '1 Hour ago',
-          message: 'This is cold'
-        }
-      ]
-    }
-  },
   props: {
+    items: Array
   },
   components: { TimeLineEntry }
 }

@@ -8,7 +8,7 @@
       <div class="col-md-7 col-md-offset-2">
         <PostSomething></PostSomething>
         <div class="panel panel-body">
-          <TimeLine></TimeLine>
+          <TimeLine :items="items"></TimeLine>
         </div>
       </div>
     </div>
@@ -25,6 +25,28 @@ export default {
     TimeLine,
     PostSomething,
     SideBar
+  },
+  data: () => {
+    return {
+      items: [
+        {
+          id: 1,
+          profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
+          label: '22:53',
+          author: 'Bagher',
+          time: '1 Hour ago',
+          message: 'This is cold'
+        },
+        {
+          id: 2,
+          profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
+          label: '22:53',
+          author: 'Bagher',
+          time: '1 Hour ago',
+          message: 'This is cold'
+        }
+      ]
+    }
   }
 }
 </script>
