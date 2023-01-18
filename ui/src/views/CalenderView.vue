@@ -3,7 +3,7 @@
   <div class="container bootstrap snippets bootdeys">
     <ProfileHeader></ProfileHeader>
     <div class="row">
-      <div class="col-md-12 col-md-offset-2">
+      <div class="col-md-8 col-md-offset-2">
         <PostSomething></PostSomething>
         <div class="panel panel-body">
           <TimeLine :items="items"></TimeLine>
