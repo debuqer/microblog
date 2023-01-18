@@ -1,11 +1,9 @@
 <template>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container bootstrap snippets bootdeys">
+    <ProfileHeader></ProfileHeader>
     <div class="row">
-      <div class="col-md-3">
-        <SideBar></SideBar>
-      </div>
-      <div class="col-md-7 col-md-offset-2">
+      <div class="col-md-12 col-md-offset-2">
         <PostSomething></PostSomething>
         <div class="panel panel-body">
           <TimeLine :items="items"></TimeLine>
@@ -18,13 +16,13 @@
 <script>
 import PostSomething from '@/components/PostSomething.vue'
 import TimeLine from '@/components/TimeLine.vue'
-import SideBar from '@/components/SideBar.vue'
+import ProfileHeader from '@/components/ProfileHeader.vue'
 export default {
   name: 'CalenderView',
   components: {
     TimeLine,
     PostSomething,
-    SideBar
+    ProfileHeader
   },
   data: () => {
     return {
