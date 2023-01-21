@@ -3,7 +3,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="col col-md-10">
-          <input type="text" class="form-control" placeholder="TL/LR" />
+          <input type="text" class="form-control" placeholder="TL/LR" v-model="label"/>
         </div>
         <div class="col col-md-2">
           <Datepicker v-model="date" text-input auto-apply close-on-auto-apply :enable-time-picker="false" :format="format"></Datepicker>
@@ -28,6 +28,7 @@ export default {
   data: () => {
     return {
       format: 'yyyy/MM/dd',
+      label: '',
       message: '',
       date: ''
     }
@@ -38,6 +39,7 @@ export default {
 
       this.message = ''
       this.date = ''
+      this.label = ''
     }
   }
 }
