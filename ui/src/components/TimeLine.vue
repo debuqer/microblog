@@ -1,13 +1,11 @@
 <template>
-  <!-- Timeline -->
-  <!--===================================================-->
-  <div class="timeline">
-    <div v-for="item in items" :key="item.id">
-      <TimeLineEntry :item="item">{{ item.id }}</TimeLineEntry>
-    </div>
+  <div class="container">
+    <ul class="timeline">
+      <li v-for="item in items" :key="item.id">
+        <TimeLineEntry :item="item">{{ item.id }}</TimeLineEntry>
+      </li>
+    </ul>
   </div>
-  <!--===================================================-->
-  <!-- End Timeline -->
 </template>
 
 <script>
@@ -22,293 +20,238 @@ export default {
 }
 </script>
 <style>
-body {
-  margin-top: 20px;
-  background: #ebeef0;
-}
-
-.img-sm {
-  width: 46px;
-  height: 46px;
-}
-
-.img-xs {
-  width: 32px;
-  height: 32px;
-}
-
-.img-holder img {
-  max-width: 100%;
-  border-radius: 0;
-}
-
-.panel {
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.075);
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 15px;
-}
-
-.panel .panel-footer,
-.panel>:last-child {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.panel .panel-heading,
-.panel>:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.panel-body {
-  padding: 25px 20px;
+body{
+    margin-top:20px;
+    background:#eee;
 }
 
 .timeline {
-  position: relative;
-  padding-bottom: 40px;
-  background-color: #ebeef0;
-  color: #5f5f5f
-}
-
-.timeline:before,
-.timeline:after {
-  background-color: #cad3df;
-  bottom: 20px;
-  content: "";
-  display: block;
-  position: absolute
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative
 }
 
 .timeline:before {
-  left: 49px;
-  top: 20px;
-  width: 2px
+    content: '';
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    width: 5px;
+    background: #2d353c;
+    left: 20%;
+    margin-left: -2.5px
 }
 
-.timeline:after {
-  left: 47px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%
+.timeline>li {
+    position: relative;
+    min-height: 50px;
+    padding: 20px 0
+}
+
+.timeline .timeline-time {
+    position: absolute;
+    left: 0;
+    width: 18%;
+    text-align: right;
+    top: 30px
+}
+
+.timeline .timeline-time .date,
+.timeline .timeline-time .time {
+    display: block;
+    font-weight: 600
+}
+
+.timeline .timeline-time .date {
+    line-height: 16px;
+    font-size: 12px
+}
+
+.timeline .timeline-time .time {
+    line-height: 24px;
+    font-size: 20px;
+    color: #242a30
+}
+
+.timeline .timeline-icon {
+    left: 15%;
+    position: absolute;
+    width: 10%;
+    text-align: center;
+    top: 40px
+}
+
+.timeline .timeline-icon a {
+    text-decoration: none;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 20px;
+    background: #d9e0e7;
+    line-height: 10px;
+    color: #fff;
+    font-size: 14px;
+    border: 5px solid #2d353c;
+    transition: border-color .2s linear
+}
+
+.timeline .timeline-body {
+    margin-left: 23%;
+    margin-right: 17%;
+    background: #fff;
+    position: relative;
+    padding: 20px 25px;
+    border-radius: 6px
+}
+
+.timeline .timeline-body:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 10px solid transparent;
+    border-right-color: #fff;
+    left: -20px;
+    top: 20px
+}
+
+.timeline .timeline-body>div+div {
+    margin-top: 15px
+}
+
+.timeline .timeline-body>div+div:last-child {
+    margin-bottom: -20px;
+    padding-bottom: 20px;
+    border-radius: 0 0 6px 6px
 }
 
 .timeline-header {
-  border-radius: 0;
-  clear: both;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  position: relative
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e7eb;
+    line-height: 30px
 }
 
-.timeline-header .timeline-header-title {
-  display: inline-block;
-  text-align: center;
-  padding: 7px 15px;
-  min-width: 100px
+.timeline-header .userimage {
+    float: left;
+    width: 34px;
+    height: 34px;
+    border-radius: 40px;
+    overflow: hidden;
+    margin: -2px 10px -2px 0
 }
 
-.timeline .timeline-header:first-child {
-  margin-bottom: 30px;
-  margin-top: 15px
+.timeline-header .username {
+    font-size: 16px;
+    font-weight: 600
 }
 
-.timeline-stat {
-  width: 100px;
-  float: left;
-  text-align: center;
-  padding-bottom: 15px
+.timeline-header .username,
+.timeline-header .username a {
+    color: #2d353c
 }
 
-.timeline-entry {
-  margin-bottom: 50px;
-  margin-top: 5px;
-  position: relative;
-  clear: both
+.timeline img {
+    max-width: 100%;
+    display: block
 }
 
-.timeline-entry-inner {
-  position: relative
+.timeline-content {
+    letter-spacing: .25px;
+    line-height: 18px;
+    font-size: 13px
 }
 
-.timeline-time {
-  display: inline-block;
-  padding: 5px 3px 7px;
-  margin-top: 3px;
-  background-color: #ebeef0;
-  color: #929292;
-  font-size: .85em;
-  max-width: 70px
+.timeline-content:after,
+.timeline-content:before {
+    content: '';
+    display: table;
+    clear: both
 }
 
-.timeline-icon {
-  border-radius: 50%;
-  box-shadow: 0 0 0 7px #ebeef0;
-  display: block;
-  margin: 0 auto;
-  height: 46px;
-  line-height: 46px;
-  text-align: center;
-  width: 46px
+.timeline-title {
+    margin-top: 0
 }
 
-.timeline-icon img {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  vertical-align: top
+.timeline-footer {
+    background: #fff;
+    border-top: 1px solid #e2e7ec;
+    padding-top: 15px
 }
 
-.timeline-icon:empty {
-  height: 10px;
-  width: 10px;
-  margin-top: 20px;
-  background-color: #a4b4c7
+.timeline-footer a:not(.btn) {
+    color: #575d63
 }
 
-.timeline-label {
-  background-color: #fff;
-  border-radius: 0;
-  margin-left: 90px;
-  padding: 10px;
-  position: relative;
-  min-height: 50px;
-  border: 1px solid #e9e9e9;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+.timeline-footer a:not(.btn):focus,
+.timeline-footer a:not(.btn):hover {
+    color: #2d353c
 }
 
-.timeline-label:before,
-.timeline-label:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 0;
-  top: 0
+.timeline-likes {
+    color: #6d767f;
+    font-weight: 600;
+    font-size: 12px
 }
 
-.timeline-label:before {
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #e6e6e6;
-  margin: 15px 0 0 -10px
-}
-
-.timeline-label:after {
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-  border-right: 9px solid #fff;
-  margin: 15px 0 0 -8px
-}
-
-.panel .timeline,
-.panel .timeline-time {
-  background-color: #fff
-}
-
-.panel .timeline-icon {
-  box-shadow: 0 0 0 7px #fff
-}
-
-.panel .timeline-label {
-  box-shadow: none;
-  background-color: #f7f7f7;
-  border: 1px solid #e3e3e3
-}
-
-.panel .timeline-label:before {
-  border-right-color: #e3e3e3
-}
-
-.panel .timeline-label:after {
-  border-right-color: #f7f7f7
-}
-
-@media (min-width:768px) {
-  .two-column.timeline {
-    text-align: center
-  }
-
-  .two-column.timeline:before {
-    left: 50%
-  }
-
-  .two-column.timeline:after {
-    left: 50%;
-    margin-left: -2px
-  }
-
-  .two-column.timeline .timeline-entry {
-    width: 50%;
-    text-align: left
-  }
-
-  .two-column.timeline .timeline-stat {
-    margin-left: -50px
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(odd) {
+.timeline-likes .stats-right {
     float: right
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(odd) .timeline-label {
-    margin-left: 40px
-  }
-
-  .two-column.timeline .timeline-header {
-    text-align: center
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) {
-    float: left
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-stat {
-    left: 100%;
-    position: relative;
-    margin-left: -50px
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-label {
-    left: -90px;
-    margin-right: -40px
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-label:before,
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-label:after {
-    left: auto;
-    right: 0;
-    border-right: 0 solid transparent
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-label:before {
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid #e6e6e6;
-    margin: 15px -10px 0 0
-  }
-
-  .two-column.timeline .timeline-entry:nth-child(even) .timeline-label:after {
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    border-left: 9px solid #fff;
-    margin: 15px -8px 0 0
-  }
 }
 
-.bg-dark,
-.bg-dark a {
-  color: #fff;
+.timeline-likes .stats-total {
+    display: inline-block;
+    line-height: 20px
 }
 
-.bg-dark {
-  background-color: #33373a;
+.timeline-likes .stats-icon {
+    float: left;
+    margin-right: 5px;
+    font-size: 9px
 }
 
-.mar-top {
-  margin-top: 15px;
+.timeline-likes .stats-icon+.stats-icon {
+    margin-left: -2px
+}
+
+.timeline-likes .stats-text {
+    line-height: 20px
+}
+
+.timeline-likes .stats-text+.stats-text {
+    margin-left: 15px
+}
+
+.timeline-comment-box {
+    background: #f2f3f4;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding: 20px 25px
+}
+
+.timeline-comment-box .user {
+    float: left;
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 30px
+}
+
+.timeline-comment-box .user img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.timeline-comment-box .user+.input {
+    margin-left: 44px
+}
+
+.lead {
+    margin-bottom: 20px;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.text-danger, .text-red {
+    color: #ff5b57!important;
 }
 </style>

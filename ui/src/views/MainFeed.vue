@@ -1,15 +1,13 @@
 <template>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <div class="container bootstrap snippets bootdeys">
+  <div class="container bootstrap snippets">
     <div class="row">
       <div class="col-md-3">
         <SideBar></SideBar>
       </div>
       <div class="col-md-7 col-md-offset-2">
         <PostSomething></PostSomething>
-        <div class="panel panel-body">
-          <TimeLine :items="items"></TimeLine>
-        </div>
+        <TimeLine :items="items"></TimeLine>
       </div>
     </div>
   </div>
@@ -34,6 +32,7 @@ export default {
           profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
           label: 'Time was 22:53',
           author: 'Bagher',
+          day: 'Yesterday',
           time: '1 Hour ago',
           description: 'USA attacked to China',
           message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -46,6 +45,7 @@ export default {
           profile: 'https://bootdey.com/img/Content/avatar/avatar6.png',
           label: 'Time was 22:53',
           author: 'Bagher',
+          day: 'Today',
           time: '1 Hour ago',
           description: 'China Attacked to Spain',
           message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
