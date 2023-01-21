@@ -6,7 +6,6 @@
         <SideBar></SideBar>
       </div>
       <div class="col-md-7 col-md-offset-2">
-        <PostSomething></PostSomething>
         <TimeLine :items="items"></TimeLine>
       </div>
     </div>
@@ -14,14 +13,12 @@
 </template>
 
 <script>
-import PostSomething from '@/components/PostSomething.vue'
 import TimeLine from '@/components/TimeLine.vue'
 import SideBar from '@/components/SideBar.vue'
 export default {
   name: 'MainFeed',
   components: {
     TimeLine,
-    PostSomething,
     SideBar
   },
   data: () => {
