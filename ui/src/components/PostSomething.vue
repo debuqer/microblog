@@ -1,16 +1,20 @@
 <template>
   <div class="panel">
     <div class="panel-body">
-      <textarea class="form-control" rows="2" placeholder="What are you thinking?"></textarea>
-      <div class="mar-top clearfix">
-        <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i>
-          Share</button>
-        <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#" data-original-title="Add Video"
-          data-toggle="tooltip"></a>
-        <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#" data-original-title="Add Photo"
-          data-toggle="tooltip"></a>
-        <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#" data-original-title="Add File"
-          data-toggle="tooltip"></a>
+      <div class="row">
+        <div class="col col-md-10">
+          <input type="text" class="form-control" placeholder="TL/LR" />
+        </div>
+        <div class="col col-md-2">
+          <Datepicker v-model="date" text-input auto-apply close-on-auto-apply :enable-time-picker="false" :format="format"></Datepicker>
+        </div>
+        <div class="col col-md-10 mt-2">
+          <textarea class="form-control" rows="2" placeholder="What happend?" v-model="message"></textarea>
+        </div>
+        <div class="col col-md-2 pt-4">
+          <button class="btn btn-sm btn-primary pull-right" style="width:100%" type="submit" @click="writeHistory"><i class="fa fa-pencil fa-fw"></i>
+              Write History</button>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +24,21 @@
 export default {
   name: 'PostSomething',
   props: {
+  },
+  data: () => {
+    return {
+      format: 'yyyy/MM/dd',
+      message: '',
+      date: ''
+    }
+  },
+  methods: {
+    writeHistory: function () {
+      console.log(this.message, this.date)
+
+      this.message = ''
+      this.date = ''
+    }
   }
 }
 </script>
