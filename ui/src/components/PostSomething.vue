@@ -2,16 +2,16 @@
   <div class="panel">
     <div class="panel-body">
       <div class="row">
-        <div class="col col-md-10">
+        <div class="col col-md-8">
           <input type="text" class="form-control" placeholder="TL/LR" v-model="label"/>
         </div>
-        <div class="col col-md-2">
-          <Datepicker v-model="date" text-input auto-apply close-on-auto-apply :enable-time-picker="false" :format="format"></Datepicker>
+        <div class="col col-md-4">
+          <SuperDatePicker area="AD" date=""></SuperDatePicker>
         </div>
-        <div class="col col-md-10 mt-2">
+        <div class="col col-md-8 mt-2">
           <textarea class="form-control" rows="2" placeholder="What happend?" v-model="message"></textarea>
         </div>
-        <div class="col col-md-2 pt-4">
+        <div class="col col-md-4 pt-4">
           <button class="btn btn-sm btn-primary pull-right" style="width:100%" type="submit" @click="writeHistory"><i class="fa fa-pencil fa-fw"></i>
               Write History</button>
         </div>
@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import SuperDatePicker from '@/components/SuperDatePicker.vue'
 export default {
   name: 'PostSomething',
+  components: {
+    SuperDatePicker
+  },
   props: {
   },
   data: () => {
