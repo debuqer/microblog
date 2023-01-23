@@ -4,6 +4,14 @@
     <ProfileHeader :item="page_info"></ProfileHeader>
     <div class="row">
       <div class="col-md-12 col-md-offset-2">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel">
+              <Select2 v-model="tags" :settings="settings" :placeholder="'Tags'" />
+            </div>
+          </div>
+        </div>
+        <hr>
         <PostSomething></PostSomething>
         <div class="panel panel-body">
           <TimeLine :items="items"></TimeLine>
@@ -26,6 +34,26 @@ export default {
   },
   data: () => {
     return {
+      options: [
+      ],
+      settings: {
+        multiple: true,
+        tags: true,
+        createTag: function (params) {
+          const term = '# ' + params.term.trim().toLowerCase().replaceAll(' ', '_')
+
+          if (term === '') {
+            return null
+          }
+
+          return {
+            id: term,
+            text: term,
+            newTag: true // add additional parameters
+          }
+        }
+      },
+      tags: [],
       page_info: {
         title: 'World War II',
         short_description: 'The history of WW2',
