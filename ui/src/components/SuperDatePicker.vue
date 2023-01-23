@@ -7,7 +7,7 @@
       </select>
     </div>
     <div class="col col-md-8">
-      <input type="text" class="form-control mr-2" v-model="defaultDate" v-maska :data-maska="format" :placeholder="placeholder" v-validate="{ date_format: 'dd/MM/yyyy', date_between:['01/01/1990',maxStartDate] }" />
+      <input type="text" class="form-control mr-2" v-model="defaultDate" v-maska :data-maska="format" :placeholder="placeholder" />
     </div>
   </div>
 </template>
@@ -20,16 +20,16 @@ import { vMaska } from 'maska'
 export default {
   data: function () {
     return {
-      defaultArea: 'AD',
-      defaultDate: ''
+      defaultArea: this.area,
+      defaultDate: this.date
     }
   },
   computed: {
     format: function () {
-      return this.area === 'AD' ? '####/##/##' : '####'
+      return this.defaultArea === 'AD' ? '####/##/##' : '####'
     },
     placeholder: function () {
-      return this.area === 'AD' ? 'E.g. 1998/11/24' : 'E.g. 2500'
+      return this.defaultArea === 'AD' ? 'E.g. 1998/11/24' : 'E.g. 2500'
     }
   },
   methods: {
