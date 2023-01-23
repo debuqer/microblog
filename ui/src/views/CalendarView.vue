@@ -12,7 +12,7 @@
           </div>
         </div>
         <hr>
-        <PostSomething></PostSomething>
+        <PostSomething :tags="tags"></PostSomething>
         <div class="panel panel-body">
           <TimeLine :items="items"></TimeLine>
         </div>
@@ -40,7 +40,7 @@ export default {
         multiple: true,
         tags: true,
         createTag: function (params) {
-          const term = '# ' + params.term.trim().toLowerCase().replaceAll(' ', '_')
+          const term = params.term.trim().toLowerCase().replaceAll(' ', '_')
 
           if (term === '') {
             return null

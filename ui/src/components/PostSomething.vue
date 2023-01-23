@@ -6,10 +6,10 @@
           <input type="text" class="form-control" placeholder="TL/LR" v-model="label"/>
         </div>
         <div class="col col-md-4">
-          <SuperDatePicker area="AD" date=""></SuperDatePicker>
+          <SuperDatePicker area="AD" :date="''"></SuperDatePicker>
         </div>
         <div class="col col-md-8 mt-2">
-          <textarea class="form-control" rows="2" placeholder="What happend?" v-model="message"></textarea>
+          <textarea class="form-control" rows="2" :placeholder="textBoxPhrase" v-model="message"></textarea>
         </div>
         <div class="col col-md-4 pt-4">
           <button class="btn btn-sm btn-primary pull-right" style="width:100%" type="submit" @click="writeHistory"><i class="fa fa-pencil fa-fw"></i>
@@ -28,6 +28,7 @@ export default {
     SuperDatePicker
   },
   props: {
+    tags: Array
   },
   data: () => {
     return {
@@ -37,9 +38,23 @@ export default {
       date: ''
     }
   },
+  computed: {
+    tagsCommaseperated: function () {
+      return this.tags
+    },
+    dateOnText: function () {
+      return this.date ?? 'many years ago'
+    },
+    textBoxPhrase: function () {
+      if (this.tagsCommaseperated.length === 0) {
+        return 'What happend for everything in the world?'
+      }
+      return 'What happend for ' + this.tagsCommaseperated + '?'
+    }
+  },
   methods: {
     writeHistory: function () {
-      console.log(this.message, this.date)
+      console.log(this.message, this.date, this.tags)
 
       this.message = ''
       this.date = ''
