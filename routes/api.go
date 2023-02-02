@@ -17,11 +17,11 @@ func ApiRouter() *httprouter.Router {
 	// store
 	router.POST("/tag/store", c.TagStore)
 	// show tag
-	router.GET("/tag/:tgid", c.TagShow)
+	router.GET("/tag/show/:tgid", c.TagShow)
 
 	/** Timeline **/
 	// show timeline
-	router.GET("/timeline/:slug", c.TimelineShow)
+	router.GET("/timeline/show/:slug", c.TimelineShow)
 	// store
 	router.POST("/timeline/store", c.TimelineStore)
 	// update
@@ -39,7 +39,7 @@ func ApiRouter() *httprouter.Router {
 
 	/** Event **/
 	// show event
-	router.GET("/timeline/event/:eid", c.EventShow)
+	router.GET("/timeline/event/show/:eid", c.EventShow)
 	// store
 	router.POST("/timeline/event/store", c.EventStore)
 	// update
@@ -55,7 +55,7 @@ func ApiRouter() *httprouter.Router {
 
 	/** User **/
 	// show user
-	router.GET("/user/:uid", c.UserShow)
+	router.GET("/user/show/:uid", c.UserShow)
 	// update user
 	router.PUT("/user/update", c.UserUpdate)
 
