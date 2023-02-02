@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/debuqer/microblog/controllers"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -12,51 +13,51 @@ func ApiRouter() *httprouter.Router {
 
 	// Tags
 	// get tags
-	router.GET("/tag/all", hello)
+	router.GET("/tag/all", controllers.TagAll)
 	// store
-	router.POST("/tag/store", hello)
+	router.POST("/tag/store", controllers.TagStore)
 	// show tag
-	router.GET("/tag/:tgid", hello)
+	router.GET("/tag/:tgid", controllers.TagShow)
 
 	/** Timeline **/
 	// show timeline
-	router.GET("/timeline/:slug", hello)
+	router.GET("/timeline/:slug", controllers.TimelineShow)
 	// store
-	router.POST("/timeline/store", hello)
+	router.POST("/timeline/store", controllers.TimelineStore)
 	// update
-	router.PUT("/timeline/update", hello)
+	router.PUT("/timeline/update", controllers.TimelineUpdate)
 	// clone into
-	router.POST("/timeline/clone", hello)
+	router.POST("/timeline/clone", controllers.TimelineClone)
 	// merge
-	router.PUT("/timeline/merge", hello)
+	router.PUT("/timeline/merge", controllers.TimelineMerge)
 	// star
-	router.POST("/timeline/reaction", hello)
+	router.POST("/timeline/reaction", controllers.TimelineReaction)
 	// load events
-	router.GET("/timeline/events/:scale", hello)
+	router.GET("/timeline/events/:scale", controllers.TimelineEvents)
 	// latest updated
-	router.GET("/timeline/latest", hello)
+	router.GET("/timeline/latest", controllers.TimelineLatest)
 
 	/** Event **/
 	// show event
-	router.GET("/timeline/event/:eid", hello)
+	router.GET("/timeline/event/:eid", controllers.EventShow)
 	// store
-	router.POST("/timeline/event/store", hello)
+	router.POST("/timeline/event/store", controllers.EventStore)
 	// update
-	router.PUT("/timeline/event/update", hello)
+	router.PUT("/timeline/event/update", controllers.EventUpdate)
 	// clone into
-	router.POST("/timeline/event/clone", hello)
+	router.POST("/timeline/event/clone", controllers.EventClone)
 	// star
-	router.POST("/timeline/event/reaction", hello)
+	router.POST("/timeline/event/reaction", controllers.EventReaction)
 	// comment
-	router.POST("/timeline/event/comment", hello)
+	router.POST("/timeline/event/comment", controllers.EventComment)
 	// load comments
-	router.GET("/timeline/event/comments", hello)
+	router.GET("/timeline/event/comments", controllers.EventComments)
 
 	/** User **/
 	// show user
-	router.GET("/user/:uid", hello)
+	router.GET("/user/:uid", controllers.UserShow)
 	// update user
-	router.PUT("/user/update", hello)
+	router.PUT("/user/update", controllers.UserUpdate)
 
 	/** Home **/
 	// sign up
@@ -64,11 +65,11 @@ func ApiRouter() *httprouter.Router {
 	// login
 	router.POST("/login", hello)
 	// forget password
-	router.GET("/forget-password", hello)
+	router.GET("/forget-password", controllers.UserForgetPassword)
 	// verify link
-	router.GET("/verify-password", hello)
+	router.GET("/verify-link", controllers.UserVerifyLink)
 	// update password
-	router.POST("/update-password", hello)
+	router.POST("/update-password", controllers.UserUpdatePassword)
 
 	return router
 }
