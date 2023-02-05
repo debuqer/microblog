@@ -2,17 +2,16 @@ package utils
 
 import (
 	"database/sql"
+	"log"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func db() *sql.DB {
-	sql, err := sql.Open("mysql", "root:@127.0.0.1:3306/old-old")
+func DB() *sql.DB {
+	sql, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/old-old")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
-
-	defer sql.Close()
 
 	return sql
 }
