@@ -61,9 +61,9 @@ func ApiRouter() *httprouter.Router {
 
 	/** Home **/
 	// sign up
-	router.POST("/signup", hello)
+	router.POST("/signup", c.UserSignup)
 	// login
-	router.POST("/login", hello)
+	router.POST("/login", c.UserLogin)
 	// forget password
 	router.GET("/forget-password", c.UserForgetPassword)
 	// verify link
