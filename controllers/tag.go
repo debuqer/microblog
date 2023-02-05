@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/debuqer/microblog/models"
 	"github.com/julienschmidt/httprouter"
@@ -35,7 +36,25 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 }
 
 func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	fmt.Println(w, ":)")
+	createdBy, _ := strconv.Atoi(r.PostFormValue("created_by"))
+	t := models.Tag{
+		Label:       r.PostFormValue("label"),
+		Description: r.PostFormValue("description"),
+		Color:       r.PostFormValue("color"),
+		CreatedBy:   createdBy,
+		CreatedDate: r.PostFormValue("created_date"),
+	}
+
+	t.Save()
+
+	res, _ := json.Marshal(struct {
+		Status string
+		Data   models.Tag
+	}{
+		"Success",
+		t,
+	})
+	fmt.Fprint(w, res)
 }
 
 func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
