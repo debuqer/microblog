@@ -10,7 +10,6 @@ import (
 )
 
 func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	fmt.Println(r.Form.Get("q"))
 	tags := models.GetAllTags(r.FormValue("q"))
 
 	json, _ := json.Marshal(struct {
