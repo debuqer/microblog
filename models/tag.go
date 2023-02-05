@@ -12,8 +12,38 @@ type Tag struct {
 	Label       string
 	Color       string
 	Description string
-	CreatedBy   User
+	CreatedBy   int
 	CreatedDate string
+}
+
+func (t *Tag) Save() (*Tag, error) {
+	db, err := utils.DB()
+	if err != nil {
+		log.Fatal(err)
+		return nil, error(err)
+	}
+	defer db.Close()
+
+	if t.Id == 0 {
+		stmt, err := db.Prepare("INSERT INTO tags(Label, Description, Color, CreatedBy, CreatedDate) VALUES(?, ?, ?, ?, ?)")
+		if err != nil {
+			log.Fatal(err)
+			return nil, error(err)
+		}
+		affected, _ := stmt.Exec()
+		id, _ := affected.LastInsertId()
+		t.Id = int(id)
+	} else {
+		stmt, err := db.Prepare("UPDATE tags SET Label = ?, Description = ?, Color = ?, CreatedBy = ?, CreatedDate = ? WHERE Id = ?")
+		if err != nil {
+			log.Fatal(err)
+			return nil, error(err)
+		}
+
+		stmt.Exec(t.Label, t.Description, t.Color, t.CreatedBy, t.CreatedDate, t.Id)
+	}
+
+	return t, nil
 }
 
 func GetAllTags(q string) ([]Tag, error) {
