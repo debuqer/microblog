@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/debuqer/microblog/models"
 	"github.com/debuqer/microblog/utils"
@@ -22,8 +21,8 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		})
 	} else {
 		res, _ = json.Marshal(struct {
-			Status string
-			Data   []models.Tag
+			Status string       `json:"status"`
+			Data   []models.Tag `json:"data"`
 		}{
 			"Success",
 			tags,
@@ -34,25 +33,29 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 }
 
 func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	createdBy, _ := strconv.Atoi(r.PostFormValue("created_by"))
-	t := models.Tag{
-		Label:       r.PostFormValue("label"),
-		Description: r.PostFormValue("description"),
-		Color:       r.PostFormValue("color"),
-		CreatedBy:   createdBy,
-		CreatedDate: r.PostFormValue("created_date"),
+	var res []byte
+
+	decoder := json.NewDecoder(r.Body)
+	t := models.Tag{}
+	err := decoder.Decode(&t)
+	if err != nil {
+		res, _ = json.Marshal(utils.ErrorRes{
+			Status:  "Fail",
+			Message: "Provide Data as json in request",
+		})
+	} else {
+		t.Save()
+
+		res, _ = json.Marshal(struct {
+			Status string     `json:"status"`
+			Data   models.Tag `json:"data"`
+		}{
+			"Success",
+			t,
+		})
 	}
 
-	t.Save()
-
-	res, _ := json.Marshal(struct {
-		Status string
-		Data   models.Tag
-	}{
-		"Success",
-		t,
-	})
-	fmt.Fprint(w, res)
+	fmt.Fprint(w, string(res))
 }
 
 func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {

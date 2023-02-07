@@ -8,12 +8,12 @@ import (
 )
 
 type Tag struct {
-	Id          int
-	Label       string
-	Color       string
-	Description string
-	CreatedBy   int
-	CreatedDate string
+	Id          int    `json:"id,omitempty"`
+	Label       string `json:"label"`
+	Color       string `json:"color"`
+	Description string `json:"description"`
+	CreatedBy   int    `json:"created_by",omitempty`
+	CreatedDate string `json:"created_date"`
 }
 
 func (t *Tag) Save() (*Tag, error) {
@@ -25,16 +25,17 @@ func (t *Tag) Save() (*Tag, error) {
 	defer db.Close()
 
 	if t.Id == 0 {
-		stmt, err := db.Prepare("INSERT INTO tags(Label, Description, Color, CreatedBy, CreatedDate) VALUES(?, ?, ?, ?, ?)")
+		stmt, err := db.Prepare("INSERT INTO tags(Label, Description, Color, created_by, created_date) VALUES(?, ?, ?, ?, ?)")
 		if err != nil {
 			log.Fatal(err)
 			return nil, error(err)
 		}
-		affected, _ := stmt.Exec()
+
+		affected, _ := stmt.Exec(t.Label, t.Description, t.Color, t.CreatedBy, t.CreatedDate)
 		id, _ := affected.LastInsertId()
 		t.Id = int(id)
 	} else {
-		stmt, err := db.Prepare("UPDATE tags SET Label = ?, Description = ?, Color = ?, CreatedBy = ?, CreatedDate = ? WHERE Id = ?")
+		stmt, err := db.Prepare("UPDATE tags SET Label = ?, Description = ?, Color = ?, created_by = ?, created_date = ? WHERE Id = ?")
 		if err != nil {
 			log.Fatal(err)
 			return nil, error(err)
