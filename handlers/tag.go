@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -32,7 +31,7 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		})
 	}
 
-	fmt.Fprint(w, string(res))
+	utils.Response(w, res)
 }
 
 func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -59,7 +58,7 @@ func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		})
 	}
 
-	fmt.Fprint(w, string(res))
+	utils.Response(w, res)
 }
 
 func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -86,5 +85,5 @@ func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		})
 	}
 
-	fmt.Fprint(w, string(res))
+	utils.Response(w, res)
 }
