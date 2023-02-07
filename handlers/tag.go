@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/debuqer/microblog/models"
+	"github.com/debuqer/microblog/utils"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -15,12 +16,9 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var res []byte
 	if err != nil {
-		res, _ = json.Marshal(struct {
-			Status  string
-			message string
-		}{
-			"Fail",
-			"Failed to get tags",
+		res, _ = json.Marshal(utils.ErrorRes{
+			Status:  "Fail",
+			Message: "Failed to get tags",
 		})
 	} else {
 		res, _ = json.Marshal(struct {
