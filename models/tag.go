@@ -73,7 +73,6 @@ func GetAllTags(q string) ([]Tag, error) {
 
 	db, err := utils.DB()
 	if err != nil {
-		log.Fatal(err)
 		return nil, error(err)
 	}
 	defer db.Close()
@@ -81,7 +80,6 @@ func GetAllTags(q string) ([]Tag, error) {
 	if q == "" {
 		stmt, err = db.Prepare("SELECT * FROM tags LIMIT 10")
 		if err != nil {
-			log.Fatal(err)
 			return nil, error(err)
 		}
 
@@ -89,7 +87,6 @@ func GetAllTags(q string) ([]Tag, error) {
 	} else {
 		stmt, err = db.Prepare("SELECT * FROM tags WHERE label like ? LIMIT 10")
 		if err != nil {
-			log.Fatal(err)
 			return nil, error(err)
 		}
 

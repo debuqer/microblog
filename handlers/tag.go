@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -16,6 +17,7 @@ func TagAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var res []byte
 	if err != nil {
+		log.Fatal(err)
 		res, _ = json.Marshal(utils.ErrorRes{
 			Status:  "Fail",
 			Message: "Failed to get tags",
@@ -40,6 +42,7 @@ func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	t := models.Tag{}
 	err := decoder.Decode(&t)
 	if err != nil {
+		log.Fatal(err)
 		res, _ = json.Marshal(utils.ErrorRes{
 			Status:  "Fail",
 			Message: "Provide Data as json in request",
@@ -68,6 +71,7 @@ func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var res []byte
 	if err != nil {
+		log.Fatal(err)
 		res, _ = json.Marshal(utils.ErrorRes{
 			Status:  "Fail",
 			Message: "Failed to get tag",
