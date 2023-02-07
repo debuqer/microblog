@@ -47,6 +47,25 @@ func (t *Tag) Save() (*Tag, error) {
 	return t, nil
 }
 
+func (t *Tag) Fetch() error {
+	db, err := utils.DB()
+	if err != nil {
+		log.Fatal(err)
+		return error(err)
+	}
+	defer db.Close()
+
+	stmt, err := db.Prepare("SELECT * FROM tags WHERE id = ? LIMIt 1")
+	if err != nil {
+		log.Fatal(err)
+		return error(err)
+	}
+
+	stmt.QueryRow(t.Id).Scan(&t.Id, &t.Label, &t.Color, &t.Description, &t.CreatedBy, &t.CreatedDate)
+
+	return nil
+}
+
 func GetAllTags(q string) ([]Tag, error) {
 	var res *sql.Rows
 	var err error

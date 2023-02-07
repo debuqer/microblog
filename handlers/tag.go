@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/debuqer/microblog/models"
 	"github.com/debuqer/microblog/utils"
@@ -59,5 +60,27 @@ func TagStore(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 }
 
 func TagShow(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	fmt.Println(w, ":)")
+	tgId, _ := strconv.Atoi(p.ByName("tgid"))
+	t := models.Tag{
+		Id: tgId,
+	}
+	err := t.Fetch()
+
+	var res []byte
+	if err != nil {
+		res, _ = json.Marshal(utils.ErrorRes{
+			Status:  "Fail",
+			Message: "Failed to get tag",
+		})
+	} else {
+		res, _ = json.Marshal(struct {
+			Status string     `json:"status"`
+			Data   models.Tag `json:"data"`
+		}{
+			"Success",
+			t,
+		})
+	}
+
+	fmt.Fprint(w, string(res))
 }
