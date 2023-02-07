@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	c "github.com/debuqer/microblog/controllers"
+	c "github.com/debuqer/microblog/handlers"
 	"github.com/julienschmidt/httprouter"
 )
 
