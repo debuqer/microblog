@@ -3,8 +3,10 @@ package models
 type Timeline struct {
 	Id           int
 	Slug         string
-	Label        string
+	Title        string
 	Descriptiuon string
+	CreatedBy    int
+	CreatedDate  string
 	Tags         []Tag
 	LazyLoading  bool
 	Events       []Event
