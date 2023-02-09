@@ -6,7 +6,11 @@ type Date struct {
 	Day   int
 }
 
+const AD = 1
+const BC = 2
+const MYA = 3
+
 type ComplexDate struct {
-	AD   bool
+	Era  int
 	Date Date
 }
