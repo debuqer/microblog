@@ -25,7 +25,7 @@ func (t *Tag) Save() (*Tag, error) {
 	defer db.Close()
 
 	if t.Id == 0 {
-		stmt, err := db.Prepare("INSERT INTO tags(Label, Description, Color, created_by, created_date) VALUES(?, ?, ?, ?, ?)")
+		stmt, err := db.Prepare("INSERT INTO tags(Label, Description, Color, created_by, created_at) VALUES(?, ?, ?, ?, ?)")
 		if err != nil {
 			log.Fatal(err)
 			return nil, error(err)
@@ -35,7 +35,7 @@ func (t *Tag) Save() (*Tag, error) {
 		id, _ := affected.LastInsertId()
 		t.Id = int(id)
 	} else {
-		stmt, err := db.Prepare("UPDATE tags SET Label = ?, Description = ?, Color = ?, created_by = ?, created_date = ? WHERE Id = ?")
+		stmt, err := db.Prepare("UPDATE tags SET Label = ?, Description = ?, Color = ?, updated_by = ?, updated_at = ? WHERE Id = ?")
 		if err != nil {
 			log.Fatal(err)
 			return nil, error(err)

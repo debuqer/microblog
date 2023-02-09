@@ -12,7 +12,9 @@ CREATE TABLE `tags` (
   `color` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_general_ci,
   `created_by` int DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   UNIQUE KEY `tags_unq_label` (`label`),
   KEY `tags_idx_id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

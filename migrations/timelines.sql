@@ -11,7 +11,9 @@ CREATE TABLE `timelines` (
   `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_by` int DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` int DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   UNIQUE KEY `slug` (`slug`),
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
